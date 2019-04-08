@@ -1,0 +1,103 @@
+3
+insere 0
+imprime_arvore
+insere 1
+imprime_arvore
+insere 2
+imprime_arvore
+insere 3
+imprime_arvore
+insere 4
+imprime_arvore
+insere 5
+imprime_arvore
+insere 6
+imprime_arvore
+insere 7
+imprime_arvore
+insere 8
+imprime_arvore
+insere 9
+imprime_arvore
+insere 10
+imprime_arvore
+insere 11
+imprime_arvore
+insere 12
+imprime_arvore
+insere 13
+imprime_arvore
+insere 14
+imprime_arvore
+insere 15
+imprime_arvore
+insere 16
+imprime_arvore
+insere 17
+imprime_arvore
+insere 18
+imprime_arvore
+insere 19
+imprime_arvore
+insere 20
+imprime_arvore
+insere 21
+imprime_arvore
+insere 22
+imprime_arvore
+insere 23
+imprime_arvore
+insere 24
+imprime_arvore
+insere 25
+imprime_arvore
+insere 26
+imprime_arvore
+insere 27
+imprime_arvore
+insere 28
+imprime_arvore
+insere 29
+imprime_arvore
+insere 30
+imprime_arvore
+insere 31
+imprime_arvore
+insere 32
+imprime_arvore
+insere 33
+imprime_arvore
+insere 34
+imprime_arvore
+insere 35
+imprime_arvore
+insere 36
+imprime_arvore
+insere 37
+imprime_arvore
+insere 38
+imprime_arvore
+insere 39
+imprime_arvore
+insere 40
+imprime_arvore
+insere 41
+imprime_arvore
+insere 42
+imprime_arvore
+insere 43
+imprime_arvore
+insere 44
+imprime_arvore
+insere 45
+imprime_arvore
+insere 46
+imprime_arvore
+insere 47
+imprime_arvore
+insere 48
+imprime_arvore
+insere 49
+imprime_arvore
+insere 50
+imprime_arvore

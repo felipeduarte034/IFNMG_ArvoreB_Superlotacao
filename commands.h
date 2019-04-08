@@ -21,8 +21,8 @@ public:
 
 Info* DecodificaInstrucao(string line)
 {
-    string command;
-    int value;
+    string command="";
+    int value=0;
 
     if(line=="imprime_arvore") //esse comando não possui espaço
         return new Info("imprime_arvore",0);
@@ -83,7 +83,7 @@ bool RunCommandsInTreeB(char* name_file)
 {
     //char nameFile[20] = "in.txt";
     ifstream file;
-    string line;
+    string line="";
     int counter=0;
     int t=0;
     Info* info;

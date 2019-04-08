@@ -21,14 +21,6 @@ public:
         dir=NULL;
         mediana=0;
     }
-    RInfo(bool is_break, bool is_insert, Nodo* p_esq, Nodo* p_dir, int chave_mediana)
-    {
-        isBreak=is_break;
-        isInsert=is_insert;
-        esq=p_esq;
-        dir=p_dir;
-        mediana=chave_mediana;
-    }
 };
 
 class Nodo
@@ -42,20 +34,13 @@ private:
     bool insertChave(int k)
     {
         int i=len; //quantidade de chaves no nodo
-        //cout << "\ninsertChave k: " << k << "  i: " << i << "  ";
         while(i>=1 && k<chaves[i-1]) //enquanto k < chave na ultima posiçao
         {
-            //cout << "    i: " << i << endl;
             chaves[i] = chaves[i-1]; //mover a chave para a direita
             i = i-1;
         }
-        //cout << "    1) chaves[i]: " << chaves[i] << endl;
         chaves[i]=k;
-        //cout << "    2) chaves[i]: " << chaves[i] << endl;
         len = len+1;
-        /*cout << "    : ";
-        print();
-        cout << endl;*/
         return true;
     }
     bool removeChave(int k)
@@ -146,28 +131,29 @@ private:
         Nodo* dir = new Nodo(t); //novo nodo irmão
         Nodo* s = new Nodo(t); //nova raiz
         n->isRaiz=false;
-        Nodo* esq = n;
-        raiz=s;
+        //Nodo* esq = n;
+        //raiz=s;
         s->isFolha=false;
         s->isRaiz=true;
         s->len=0;
-        s->filhos[0]=esq;
+        s->filhos[0]=n;
+        raiz=s;
         int i=1;
 
-        dir->isFolha=esq->isFolha;
+        dir->isFolha=n->isFolha;
         for(int j=1; j<=(t); j++) //passa para dir as maiores chaves
         {
-            dir->insertChave(esq->chaves[j+(t-1)]);
+            dir->insertChave(n->chaves[j+(t-1)]);
         }
-        if(!esq->is_folha())
+        if(!n->is_folha())
         {
             for(int j=dir->len, m=0; m<(dir->len+1); j--,m++)
             {
-                dir->filhos[j] = esq->filhos[j+t];
-                esq->filhos[j+t] = NULL;
+                dir->filhos[j] = n->filhos[j+t];
+                n->filhos[j+t] = NULL;
             }
         }
-        esq->len=t-1; //ajusta a contagem de chaves para o nodo com as menores chaves
+        n->len=t-1; //ajusta a contagem de chaves para o nodo com as menores chaves
 
         for(int j=n->len+1; j<(i+1); j++)
         {
@@ -185,10 +171,8 @@ private:
     {
         int mediana = n->chaves[getIndMed(n->len)];
         Nodo* dir = new Nodo(t);
-        //dir->isFolha=esq->isFolha;
         for(int j=1; j<=(t); j++) //passa para dir as maiores chaves
         {
-            //cout << "    n->chaves[j+(t-1)]: " << n->chaves[j+(t-1)] << endl;
             dir->insertChave(n->chaves[j+(t-1)]);
         }
         if(!n->is_folha())
@@ -223,16 +207,18 @@ private:
 
         for(int j=n->len+1; j>i; j--) //inserem dir como filho de n
         {
-            n->filhos[j+1] = n->filhos[j]; //empurra os filhos para direita
+            if(j<n->maxf)
+                n->filhos[j+1] = n->filhos[j]; //empurra os filhos para direita
         }
         n->filhos[i+1] = info->dir; //coloca o novo nodo dir, como filho
-
         if(n->len > (2*t-1)) //nodo superlotado
         {
             if(n->isRaiz)
             {
                 BreakNodoRoot(n);
-                return new RInfo();
+                rinfo = new RInfo();
+                rinfo->isInsert = isIserted;
+                return rinfo;
             }
             else
             {
@@ -255,36 +241,40 @@ private:
     RInfo* Insert(Nodo* n, int k)
     {
         RInfo* rinfo;
+        bool isInserted=false;
         int i=n->len; //quantidade de chaves no nodo
         while(i>=1 && k<n->chaves[i-1]) //determina o filho de n
         {
             i-=1;
         }
-
+        
         if(n->is_folha())
         {
             for(int j=0; j<n->len; j++)
             {
                 if(k==n->chaves[j]) //Não inserir valor repetido.
                 {
-                    cout << "ALERT! "<< k << " ja existe na TREE." << endl;
+                    //cout << "ALERT! "<< k << " ja existe na TREE." << endl;
                     rinfo = new RInfo();
                     rinfo->isInsert=false;
                     return rinfo;
                 }
             }
 
-            bool isIserted = n->insertChave(k);
+            isInserted = n->insertChave(k);
             if(n->len > (2*t-1)) //folha superlotada
             {
                 if(n->isRaiz)
                 {
                     BreakNodoRoot(n);
+                    rinfo = new RInfo();
+                    rinfo->isInsert = isInserted;
+                    return rinfo;
                 }
                 else
                 {
                     rinfo = BreakNodo(n,i);
-                    rinfo->isInsert = isIserted;
+                    rinfo->isInsert = isInserted;
                     return rinfo;
                 }
             }
@@ -297,7 +287,9 @@ private:
                 return inserirMediana(n,rinfo,i);
             }
         }
-        return new RInfo();
+        rinfo = new RInfo();
+        rinfo->isInsert = isInserted;
+        return rinfo;
     }
 public:
     int t; //grau minimo
@@ -343,8 +335,13 @@ public:
         }
         cout<<endl;
     }
-    void printNodoAndChild(Nodo* n)
+    bool printNodoAndChild(Nodo* n)
     {
+        if(n == NULL)
+        {
+            cout << "ALERT! printNodoAndChild(): n == NULL. ";
+            return false;
+        }
         cout << "Nodo: [";
         n->print();
         cout << "]";
@@ -357,6 +354,7 @@ public:
             cout << ")";
         }
         cout<<endl;
+        return true;
     }
 };
 

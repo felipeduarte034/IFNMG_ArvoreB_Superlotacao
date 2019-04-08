@@ -1,0 +1,43 @@
+2
+insere -6
+imprime_arvore
+insere -5
+imprime_arvore
+insere -8
+imprime_arvore
+insere -22
+imprime_arvore
+insere 10
+imprime_arvore
+insere 20
+imprime_arvore
+insere 30
+imprime_arvore
+insere 40
+imprime_arvore
+insere 50
+imprime_arvore
+insere 60
+imprime_arvore
+insere 12
+imprime_arvore
+insere 32
+imprime_arvore
+insere 70
+imprime_arvore
+insere 52
+imprime_arvore
+insere 54
+imprime_arvore
+insere 80
+imprime_arvore
+insere -22
+imprime_arvore
+insere -33
+imprime_arvore
+insere -45
+imprime_arvore
+insere -57
+imprime_arvore
+insere -60
+imprime_arvore
