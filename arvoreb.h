@@ -189,10 +189,11 @@ private:
             n->filhos[j+1] = n->filhos[j]; //empurra os filhos para direita
         }
         //n->filhos[i+1] = dir; //inserem dir como filho de n
-        for(int j=n->len-1; j>=i; j--)
+        //cout << "    : " << 
+        /*for(int j=n->len-1; j>=i; j--)
         {
             n->chaves[j+1] = n->chaves[j];
-        }
+        }*/
 
         RInfo* rinfo = new RInfo();
         rinfo->isBreak=true;
