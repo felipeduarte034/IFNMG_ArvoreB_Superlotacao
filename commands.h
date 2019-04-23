@@ -74,64 +74,11 @@ bool RunCommandsInTreeB()
         {
             mytree->imprimir();
         }
+        else if(info->command=="remove")
+        {
+            mytree->remover(info->value);
+        }
     }
-    return true;
-}
-
-//Codigo com Arquivo
-bool RunCommandsInTreeB(char* name_file)
-{
-    //char nameFile[20] = "in.txt";
-    ifstream file;
-    string line="";
-    int counter=0;
-    int t=0;
-    Info* info;
-    ArvoreB* mytree;
-    
-    file.open(name_file,ios::out);
-    if(!file.is_open())
-    {
-        cout << "ALERT! Nao foi possivel abrir o arquivo " << name_file << endl;
-        return false;
-    }
-
-    while(getline(file,line))
-    {
-        counter++;
-        if(counter==1)
-        {
-            t = atoi(line.c_str());
-            if(t<2)
-            {
-                cout << "Ops! o parametro GRAU_MIN tem que ser MAIOR ou IGUAL a 2." << endl;
-                return false;
-            }
-            mytree = new ArvoreB(t);
-            continue;   
-        }
-        //cout << "line " << counter << ": " << line << endl;
-
-        info = DecodificaInstrucao(line);
-
-        if(info->command=="insere")
-        {
-            mytree->inserir(info->value);
-        }
-        else if(info->command=="busca")
-        {
-            cout << info->value << ((mytree->buscar(info->value))?(" encontrado"):(" não encontrado")) << endl;
-        }
-        else if(info->command=="imprime_arvore")
-        {
-            mytree->imprimir();
-        }
-
-        //if(counter==10)
-        //    break;
-    }
-    
-    file.close();
     return true;
 }
 
