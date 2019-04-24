@@ -100,3 +100,27 @@ busca 90
 remove 90
 remove 90
 imprime_arvore
+remove 17
+remove 80
+imprime_arvore
+remove 85
+imprime_arvore
+insere -5
+insere -10
+insere -15 
+imprime_arvore
+insere -20
+insere -21
+imprime_arvore
+insere -22
+imprime_arvore
+insere -55
+imprime_arvore
+remove -20
+imprime_arvore
+remove -21
+imprime_arvore
+remove 88
+imprime_arvore
+remove -15
+imprime_arvore

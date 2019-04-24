@@ -798,16 +798,28 @@ private:
         f = n->filhos[i];
         if(n->filhos[i]->len < (t-1) && n->isRaiz && n->len == 1)// se for a raiz com apenas uma chave
         {
-            irmao = n->filhos[i - 1];
             cout << "    ###########  nodo folha len=0 && raiz len=1  validarNodoFolha()" << endl;
             //printNodoAndChild(irmao);
+            //cout << "    i: "<<i<<"  n: ";
+            //printNodoAndChild(n);
 
-            //if((i-1)<n->len)
-            //    cout << "    pos valida n->chaves[i-1]: " << n->chaves[i-1] << endl;
-            e = n->removeChaveInPos(i - 1);
-            //cout << "    e: " << e << endl;
+            if((i-1)<n->len && i>0)
+                cout << "    pos valida n->chaves[i-1]: " << n->chaves[i-1] << endl;
+
+            if(i==0)
+            {
+                irmao = n->filhos[i+1]; //irmao da direita
+                e = n->removeChaveInPos(i);
+            }
+            else
+            {
+                irmao = n->filhos[i - 1]; //irmao da esquerda
+                e = n->removeChaveInPos(i - 1);
+            }
+            
+            cout << "    e: " << e << endl;
             int pos = irmao->insertChaveGetPos(e);
-            //cout << "    pos: " << pos << endl;
+            cout << "    pos: " << pos << endl;
             int j=0,m=pos+1;
             for (; j<f->len; j++,m++) //copia as chaves do F para IRMAO
             {
